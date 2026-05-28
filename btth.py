@@ -19,40 +19,41 @@ while True:
     
     choice = int(choice)
 
-    if choice == 1:
-        print("\n--- BÁO CÁO DOANH THU TỔNG HỢP ---")
-        print("Tên Cơ Sở\t| Doanh Thu\t| Trạng Thái")
-        print("---")
-        total_revenue = 0
-        for i in range(len(branch_names)):
-            revenue = daily_revenues[i]
-            total_revenue += revenue
-            status = "Đạt" if target_achieved[i] else "Không Đạt"
-            print(f"{branch_names[i]}\t| {revenue}\t| {status}")
-        print(f"\n=> TỔNG DOANH THU TOÀN VÙNG: {total_revenue} VND")
-    
-    elif choice == 2:
-        max_revenue = max(daily_revenues)
-        min_revenue = min(daily_revenues)
-        max_index = daily_revenues.index(max_revenue)
-        min_index = daily_revenues.index(min_revenue)
-        max_branch = branch_names[max_index]
-        min_branch = branch_names[min_index]
-        print("\n--- THÔNG KÊ CƠ SỞ NỔI BẬT ---")
-        print(f"- Cơ sở có doanh thu CAO NHẤT: {max_branch} ({max_revenue} VND)")
-        print(f"- Cơ sở có doanh thu THẤP NHẤT: {min_branch} ({min_revenue} VND)")
-    
-    elif choice == 3:
-        failed_branches = []
-        for i in range(len(branch_names)):
-            if not target_achieved[i]: 
-                failed_branches.append(branch_names[i])
-        print("\n--- DANH SÁCH CƠ SỞ CẦN HỖ TRỢ (KHÔNG ĐẠT) ---")
-        print(failed_branches)
-    
-    elif choice == 4:
-        print("Hệ thống ghi nhận dữ liệu hoàn tất. Tạm biệt!")
-        break
-    
-    else:
-        print("[Lỗi] Lựa chọn không hợp lệ, vui lòng nhập lại số từ 1 đến 4!")
+    match choice:
+        case 1:
+            print("\n--- BÁO CÁO DOANH THU TỔNG HỢP ---")
+            print("Tên Cơ Sở\t| Doanh Thu\t| Trạng Thái")
+            print("---")
+            total_revenue = 0
+            for i in range(len(branch_names)):
+                revenue = daily_revenues[i]
+                total_revenue += revenue
+                status = "Đạt" if target_achieved[i] else "Không Đạt"
+                print(f"{branch_names[i]}\t| {revenue}\t| {status}")
+            print(f"\n=> TỔNG DOANH THU TOÀN VÙNG: {total_revenue} VND")
+        
+        case 2:
+            max_revenue = max(daily_revenues)
+            min_revenue = min(daily_revenues)
+            max_index = daily_revenues.index(max_revenue)
+            min_index = daily_revenues.index(min_revenue)
+            max_branch = branch_names[max_index]
+            min_branch = branch_names[min_index]
+            print("\n--- THÔNG KÊ CƠ SỞ NỔI BẬT ---")
+            print(f"- Cơ sở có doanh thu CAO NHẤT: {max_branch} ({max_revenue} VND)")
+            print(f"- Cơ sở có doanh thu THẤP NHẤT: {min_branch} ({min_revenue} VND)")
+        
+        case 3:
+            failed_branches = []
+            for i in range(len(branch_names)):
+                if not target_achieved[i]: 
+                    failed_branches.append(branch_names[i])
+            print("\n--- DANH SÁCH CƠ SỞ CẦN HỖ TRỢ (KHÔNG ĐẠT) ---")
+            print(failed_branches)
+        
+        case 4:
+            print("Hệ thống ghi nhận dữ liệu hoàn tất. Tạm biệt!")
+            break
+        
+        case _:
+            print("[Lỗi] Lựa chọn không hợp lệ, vui lòng nhập lại số từ 1 đến 4!")
